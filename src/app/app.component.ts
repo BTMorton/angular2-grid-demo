@@ -26,7 +26,7 @@ export class AppComponent {
         'min_rows': 1,
         'col_width': 2,
         'row_height': 2,
-        'cascade': 'up',
+        'cascade': 'left',
         'min_width': 50,
         'min_height': 50,
         'fix_to_grid': false,
