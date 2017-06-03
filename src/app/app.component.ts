@@ -12,10 +12,9 @@ interface Box {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    private boxes: Array<Box> = [];
-    private rgb: string = '#efefef';
-    private curNum: number = 5;
-    private gridConfig: NgGridConfig = <NgGridConfig>{
+    public curNum: number = 10;
+    public boxes: Array<Box> = [];
+    public gridConfig: NgGridConfig = <NgGridConfig>{
         'margins': [5],
         'draggable': true,
         'resizable': true,
@@ -38,14 +37,15 @@ export class AppComponent {
         'zoom_on_drag': false,
         'limit_to_screen': true
     };
+    private rgb: string = '#efefef';
     private curItemCheck: number = 0;
     private itemPositions: Array<any> = [];
 
     constructor() {
-        for (var i = 0; i < 4; i++) {
+        for (let i = 1; i < this.curNum; i++) {
             const conf = this._generateDefaultItemConfig();
-            conf.payload = 1 + i;
-            this.boxes[i] = { id: i + 1, config: conf };
+            conf.payload = i;
+            this.boxes[i - 1] = { id: i, config: conf };
         }
     }
 
@@ -92,14 +92,15 @@ export class AppComponent {
         // Do something here
     }
 
+    public randomise(): void {
+        for (const box of this.boxes) {
+            box.config.col = Math.floor(Math.random() * 6) + 1;
+            box.config.row = 1;
+        }
+    }
+
     private _generateDefaultItemConfig(): NgGridItemConfig {
         return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 };
     }
 
-    private _randomise(): void {
-        for (var x in this.boxes) {
-            this.boxes[x].config.col = Math.floor(Math.random() * 6) + 1;
-            this.boxes[x].config.row = 1;
-        }
-    }
 }
