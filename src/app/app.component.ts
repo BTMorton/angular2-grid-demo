@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NgGridConfig, NgGridItemConfig, NgGridItemEvent } from "angular2-grid";
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { NgGridConfig, NgGridItemConfig, NgGridItemEvent, NgGrid } from "angular2-grid";
 
 interface Box {
     id: number;
@@ -11,7 +11,9 @@ interface Box {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+    @ViewChild(NgGrid)
+    private grid: NgGrid;
     public curNum: number = 10;
     public boxes: Array<Box> = [];
     public gridConfig: NgGridConfig = <NgGridConfig>{
@@ -66,6 +68,10 @@ export class AppComponent {
 
     get curItem(): NgGridItemConfig {
         return this.boxes[this.curItemCheck] ? this.boxes[this.curItemCheck].config : {};
+    }
+
+    ngAfterViewInit(): void {
+        //  Do something with NgGrid instance here
     }
 
     addBox(): void {
