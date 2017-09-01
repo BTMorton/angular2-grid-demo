@@ -37,7 +37,8 @@ export class AppComponent implements AfterViewInit {
         'maintain_ratio': false,
         'prefer_new': false,
         'zoom_on_drag': false,
-        'limit_to_screen': true
+        'limit_to_screen': true,
+        'element_based_row_height': false
     };
     private rgb: string = '#efefef';
     private curItemCheck: number = 0;
