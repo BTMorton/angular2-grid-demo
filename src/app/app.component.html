@@ -151,6 +151,28 @@
                 </div>
             </div>
             <div class="form-inline">
+                <div class="form-group">
+                    <label>
+                        Fix Items Direction
+                        <select class="form-control" name="fix_item_position_direction" ngControl="fix_item_position_direction" [(ngModel)]="gridConfig.fix_item_position_direction">
+                            <option value="vertical">Vertical</option>
+                            <option value="horizontal">Horizontal</option>
+                            <option value="cascade">Follow Cascade</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Fix Collisions Direction
+                        <select class="form-control" name="fix_collision_position_direction" ngControl="fix_collision_position_direction" [(ngModel)]="gridConfig.fix_collision_position_direction" >
+                            <option value="vertical">Vertical</option>
+                            <option value="horizontal">Horizontal</option>
+                            <option value="cascade">Follow Cascade</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="form-inline">
                 <label>
                     Get Item Position &amp; Size
                     <select name="itemCheck" class="form-control" ngControl="item_check" [(ngModel)]="itemCheck">

@@ -1,5 +1,5 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { NgGridConfig, NgGridItemConfig, NgGridItemEvent, NgGrid } from "angular2-grid";
+import { NgGridConfig, NgGridItemConfig, NgGridItemEvent, NgGrid } from 'angular2-grid';
 
 interface Box {
     id: number;
@@ -28,7 +28,7 @@ export class AppComponent implements AfterViewInit {
         'min_rows': 1,
         'col_width': 2,
         'row_height': 2,
-        'cascade': 'left',
+        'cascade': 'up',
         'min_width': 50,
         'min_height': 50,
         'fix_to_grid': false,
@@ -38,7 +38,9 @@ export class AppComponent implements AfterViewInit {
         'prefer_new': false,
         'zoom_on_drag': false,
         'limit_to_screen': true,
-        'element_based_row_height': false
+        'element_based_row_height': false,
+        'fix_item_position_direction': 'horizontal',
+        'fix_collision_position_direction': 'vertical',
     };
     private rgb: string = '#efefef';
     private curItemCheck: number = 0;
