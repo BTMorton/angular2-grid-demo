@@ -64,7 +64,7 @@
                 <div class="form-group">
                     <label>
                         Margins
-                        <input type="number" class="form-control" name="margins" ngControl="margins" [(ngModel)]="gridConfig.margins[0]" />
+                        <input type="number" class="form-control" name="margins" ngControl="margins" [ngModel]="gridConfig.margins[0]" (ngModelChange)="setMargin($event)" />
                     </label>
                 </div>
             </div>

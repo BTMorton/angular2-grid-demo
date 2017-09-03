@@ -76,6 +76,10 @@ export class AppComponent implements AfterViewInit {
         //  Do something with NgGrid instance here
     }
 
+    setMargin(marginSize: string): void {
+        this.gridConfig.margins = [ parseInt(marginSize, 10) ];
+    }
+
     addBox(): void {
         const conf: NgGridItemConfig = this._generateDefaultItemConfig();
         conf.payload = this.curNum++;
