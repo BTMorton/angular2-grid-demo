@@ -39,6 +39,7 @@ export class AppComponent implements AfterViewInit {
         'zoom_on_drag': false,
         'limit_to_screen': true,
         'element_based_row_height': false,
+        'center_to_screen': false,
         'fix_item_position_direction': 'horizontal',
         'fix_collision_position_direction': 'vertical',
     };
@@ -75,6 +76,10 @@ export class AppComponent implements AfterViewInit {
 
     ngAfterViewInit(): void {
         //  Do something with NgGrid instance here
+    }
+
+    setMargin(marginSize: string): void {
+        this.gridConfig.margins = [ parseInt(marginSize, 10) ];
     }
 
     addBox(): void {
