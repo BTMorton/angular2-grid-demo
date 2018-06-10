@@ -42,6 +42,7 @@ export class AppComponent implements AfterViewInit {
         'center_to_screen': false,
         'fix_item_position_direction': 'horizontal',
         'fix_collision_position_direction': 'vertical',
+        'allow_overlap': false,
     };
     private rgb = '#efefef';
     private curItemCheck = 0;
