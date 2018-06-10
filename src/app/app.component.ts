@@ -14,7 +14,7 @@ interface Box {
 export class AppComponent implements AfterViewInit {
     @ViewChild(NgGrid)
     private grid: NgGrid;
-    public curNum: number = 10;
+    public curNum = 10;
     public boxes: Array<Box> = [];
     public gridConfig: NgGridConfig = <NgGridConfig>{
         'margins': [5],
@@ -43,8 +43,8 @@ export class AppComponent implements AfterViewInit {
         'fix_item_position_direction': 'horizontal',
         'fix_collision_position_direction': 'vertical',
     };
-    private rgb: string = '#efefef';
-    private curItemCheck: number = 0;
+    private rgb = '#efefef';
+    private curItemCheck = 0;
     private itemPositions: Array<any> = [];
 
     constructor() {
@@ -66,7 +66,6 @@ export class AppComponent implements AfterViewInit {
     }
 
     set itemCheck(v: number) {
-        console.log(v);
         this.curItemCheck = v;
     }
 
