@@ -1,18 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
-
 .grid {
-	background-color: #efefef;
-	transform-origin: top center;
-	transition: transform 0.5s;
+	background-color: #f5f2f2;
+	width: 100%;
+	min-height: 750px;
 }
 
 .grid-item {
 	background-color: #ffffff;
-	-webkit-transition: width 0.25s, height 0.25s, transform 0.5s;
-	-moz-transition: width 0.25s, height 0.25s, transform 0.5s;
-	-o-transition: width 0.25s, height 0.25s, transform 0.5s;
-	transition: width 0.25s, height 0.25s, transform 0.5s;
-	overflow: hidden;
+	-webkit-transition: width 0.25s, height 0.25s, left 0.25s, top 0.25s, right 0.25s, bottom 0.25s;
+	-moz-transition: width 0.25s, height 0.25s, left 0.25s, top 0.25s, right 0.25s, bottom 0.25s;
+	-o-transition: width 0.25s, height 0.25s, left 0.25s, top 0.25s, right 0.25s, bottom 0.25s;
+	transition: width 0.25s, height 0.25s, left 0.25s, top 0.25s, right 0.25s, bottom 0.25s;
+	border: solid 1px;
 }
 
 .grid-item:active, .grid-item.moving {
@@ -24,5 +22,21 @@
 }
 
 .grid-placeholder {
-	background-color: rgba(0, 0, 0, 0.3);
+	background-color: rgba(0, 100, 200, 0.3);
+}
+
+@media (max-width: 767px) {
+	.grid {
+		width: 100% !important;
+		height: auto !important;
+		padding: 10px;
+	}
+	.grid-item {
+		position: static !important;
+		width: 100% !important;
+		margin-bottom: 10px;
+	}
+	.grid-item:last-child {
+		margin-bottom: 0;
+	}
 }
