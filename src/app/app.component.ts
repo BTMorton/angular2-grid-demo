@@ -16,7 +16,7 @@ export class AppComponent implements AfterViewInit {
     private grid: NgGrid;
     public curNum = 10;
     public boxes: Array<Box> = [];
-    public gridConfig: NgGridConfig = <NgGridConfig>{
+    public gridConfig: NgGridConfig = {
         'margins': [5],
         'draggable': true,
         'resizable': true,
@@ -42,6 +42,7 @@ export class AppComponent implements AfterViewInit {
         'center_to_screen': false,
         'fix_item_position_direction': 'horizontal',
         'fix_collision_position_direction': 'vertical',
+        'resize_directions': NgGrid.CONST_DEFAULT_RESIZE_DIRECTIONS,
     };
     private rgb = '#efefef';
     private curItemCheck = 0;
