@@ -43,6 +43,7 @@ export class AppComponent implements AfterViewInit {
         'fix_item_position_direction': 'horizontal',
         'fix_collision_position_direction': 'vertical',
         'resize_directions': NgGrid.CONST_DEFAULT_RESIZE_DIRECTIONS,
+        'allow_overlap': false,
     };
     private rgb = '#efefef';
     private curItemCheck = 0;
