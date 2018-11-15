@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {NgGrid, NgGridItem, NgGridConfig, NgGridItemConfig, NgGridItemEvent} from 'angular2-grid';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { NgGridConfig, NgGridItemConfig, NgGridItemEvent } from 'angular2-grid';
 
 interface Box {
     id: number;
