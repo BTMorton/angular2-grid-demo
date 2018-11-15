@@ -1,22 +1,20 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { NgGridConfig, NgGridItemConfig, NgGridItemEvent, NgGrid } from 'angular2-grid';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { NgGridConfig, NgGridItemConfig, NgGridItemEvent } from 'angular2-grid';
 
 interface Box {
     id: number;
-    config: NgGridItemConfig;
+    config: any;
 }
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: 'app.component.html',
+    styleUrls: ['app.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements AfterViewInit {
-    @ViewChild(NgGrid)
-    private grid: NgGrid;
-    public curNum = 10;
+export class AppComponent {
     public boxes: Array<Box> = [];
-    public gridConfig: NgGridConfig = {
+    public gridConfig: NgGridConfig = <NgGridConfig>{
         'margins': [5],
         'draggable': true,
         'resizable': true,
@@ -37,50 +35,20 @@ export class AppComponent implements AfterViewInit {
         'maintain_ratio': false,
         'prefer_new': false,
         'zoom_on_drag': false,
-        'limit_to_screen': true,
-        'element_based_row_height': false,
-        'center_to_screen': false,
-        'fix_item_position_direction': 'horizontal',
-        'fix_collision_position_direction': 'vertical',
-        'resize_directions': NgGrid.CONST_DEFAULT_RESIZE_DIRECTIONS,
-        'allow_overlap': false,
+        'limit_to_screen': true
     };
     private rgb = '#efefef';
-    private curItemCheck = 0;
+    private curNum;
     private itemPositions: Array<any> = [];
 
     constructor() {
-        for (let i = 1; i < this.curNum; i++) {
-            const conf = this._generateDefaultItemConfig();
-            conf.payload = i;
-            this.boxes[i - 1] = { id: i, config: conf };
+        const dashconf = this._generateDefaultDashConfig();
+        for (let i = 0; i < dashconf.length; i++) {
+            const conf = dashconf[i];
+            conf.payload = 1 + i;
+            this.boxes[i] = { id: i + 1, config: conf };
         }
-    }
-
-    get ratioDisabled(): boolean {
-        return (this.gridConfig.max_rows > 0 && this.gridConfig.visible_cols > 0) ||
-            (this.gridConfig.max_cols > 0 && this.gridConfig.visible_rows > 0) ||
-            (this.gridConfig.visible_cols > 0 && this.gridConfig.visible_rows > 0);
-    }
-
-    get itemCheck(): number {
-        return this.curItemCheck;
-    }
-
-    set itemCheck(v: number) {
-        this.curItemCheck = v;
-    }
-
-    get curItem(): NgGridItemConfig {
-        return this.boxes[this.curItemCheck] ? this.boxes[this.curItemCheck].config : {};
-    }
-
-    ngAfterViewInit(): void {
-        //  Do something with NgGrid instance here
-    }
-
-    setMargin(marginSize: string): void {
-        this.gridConfig.margins = [ parseInt(marginSize, 10) ];
+        this.curNum = dashconf.length + 1;
     }
 
     addBox(): void {
@@ -89,9 +57,9 @@ export class AppComponent implements AfterViewInit {
         this.boxes.push({ id: conf.payload, config: conf });
     }
 
-    removeBox(): void {
-        if (this.boxes[this.curItemCheck]) {
-            this.boxes.splice(this.curItemCheck, 1);
+    removeWidget(index: number): void {
+        if (this.boxes[index]) {
+            this.boxes.splice(index, 1);
         }
     }
 
@@ -107,15 +75,16 @@ export class AppComponent implements AfterViewInit {
         // Do something here
     }
 
-    public randomise(): void {
-        for (const box of this.boxes) {
-            box.config.col = Math.floor(Math.random() * 6) + 1;
-            box.config.row = 1;
-        }
-    }
-
     private _generateDefaultItemConfig(): NgGridItemConfig {
         return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 };
     }
 
+    private _generateDefaultDashConfig(): NgGridItemConfig[] {
+        return [{ 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 50, 'sizey': 40 },
+        { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 },
+        { 'dragHandle': '.handle', 'col': 26, 'row': 1, 'sizex': 1, 'sizey': 1 },
+        { 'dragHandle': '.handle', 'col': 51, 'row': 1, 'sizex': 75, 'sizey': 1 },
+        { 'dragHandle': '.handle', 'col': 51, 'row': 26, 'sizex': 32, 'sizey': 40 },
+        { 'dragHandle': '.handle', 'col': 83, 'row': 26, 'sizex': 1, 'sizey': 1 }];
+    }
 }
